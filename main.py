@@ -41,10 +41,21 @@ app.add_middleware(
 # ============================================================================
 
 # Service URLs (using Docker service names)
-SERVICES = {
+
+import os
+
+SERVICES = None
+
+if os.getenv("ENVIRONMENT") == "production":
+    SERVICES = {
+        "auth" : "http://auth:8001",
+        "dispute" : "http://dispute:8002"
+    }
+else :
+    SERVICES = {
     "auth": "http://localhost:8001",
     "dispute": "http://localhost:8002",
-}
+    }
 
 # Create a shared HTTP client with connection pooling
 client = httpx.AsyncClient(
