@@ -1,2 +1,7 @@
 .env
 .python-version
+.mypy_cache
+.ruff_cache
+.venv
+__pycache__/
+*.pyc
